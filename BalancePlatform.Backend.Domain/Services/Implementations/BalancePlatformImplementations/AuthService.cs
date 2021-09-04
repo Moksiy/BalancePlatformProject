@@ -214,7 +214,7 @@ namespace BalancePlatform.Backend.Domain.Services.Implementations.BalancePlatfor
                                 {
                                     Id = userDao.Id,
                                     Name = userDao.UserName,
-                                    ImageUrl = ""//TODO: добавить получение url
+                                    ImageUrl = userDao.ImageUrl
                                 },
                                 Token = userTokenDao.Token,
                                 ErrorCode = 0,
@@ -279,7 +279,7 @@ namespace BalancePlatform.Backend.Domain.Services.Implementations.BalancePlatfor
                             {
                                 Id = userDao.Id,
                                 Name = userDao.UserName,
-                                ImageUrl = ""//TODO: добавить получение url
+                                ImageUrl = userDao.ImageUrl
                             },
                             Token = tokenDao.Token,
                             ErrorCode = 0,

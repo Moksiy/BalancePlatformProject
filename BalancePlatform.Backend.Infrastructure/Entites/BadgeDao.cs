@@ -22,9 +22,14 @@ namespace BalancePlatform.Backend.Infrastructure.Entites
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// Стоимость
+        /// Очки рейтинга
         /// </summary>
-        public int Cost { get; set; }
+        public int Score { get; set; }
+
+        /// <summary>
+        /// Валюта
+        /// </summary>
+        public int SpentCurrency { get; set; }
 
     }
 }

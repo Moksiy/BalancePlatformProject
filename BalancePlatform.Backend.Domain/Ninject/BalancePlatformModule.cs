@@ -84,6 +84,7 @@ namespace BalancePlatform.Backend.Domain.Ninject
             Bind<IRoleService>().To<RoleService>();
             Bind<IShopService>().To<ShopService>();
             Bind<IGroupService>().To<GroupService>();
+            Bind<IBadgeService>().To<BadgeService>();
             Bind<IUserForWebService>().To<UserForWebService>();
         }
 

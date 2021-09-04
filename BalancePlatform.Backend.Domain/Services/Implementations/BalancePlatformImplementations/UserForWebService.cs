@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BalancePlatform.Backend.Domain.Entities.Branches;
 using BalancePlatform.Backend.Domain.Entities.Users;
 using BalancePlatform.Backend.Domain.Ninject;
 using BalancePlatform.Backend.Domain.Services.Implementations.BaseImplementations;
@@ -29,6 +30,10 @@ namespace BalancePlatform.Backend.Domain.Services.Implementations.BalancePlatfor
 
         private readonly IEntityRepository<SpentCurrencyDao> _spentCurrencyRepository;
 
+        private readonly IEntityRepository<BadgeDao> _badgeRepository;
+
+        private readonly IEntityRepository<UserBadgeDao> _userBadgeRepository;
+
         private readonly IMapper _mapper;
 
         /// <summary>
@@ -47,6 +52,10 @@ namespace BalancePlatform.Backend.Domain.Services.Implementations.BalancePlatfor
             _currencyRepository = kernel.Get<IEntityRepository<CurrencyDao>>(new ConstructorArgument("context", _balancePlatformContext));
 
             _spentCurrencyRepository = kernel.Get<IEntityRepository<SpentCurrencyDao>>(new ConstructorArgument("context", _balancePlatformContext));
+
+            _badgeRepository = kernel.Get<IEntityRepository<BadgeDao>>(new ConstructorArgument("context", _balancePlatformContext));
+
+            _userBadgeRepository = kernel.Get<IEntityRepository<UserBadgeDao>>(new ConstructorArgument("context", _balancePlatformContext));
 
             _mapper = kernel.Get<IMapper>();
         }
@@ -120,7 +129,57 @@ namespace BalancePlatform.Backend.Domain.Services.Implementations.BalancePlatfor
                  PlaceOnTop = scoreQueryable.FindIndex(x => x.UserId == user.Id) + 1,
                  Currency = currency.FirstOrDefault(x => x.UserId == user.Id).Value,
                  SpentCurrency = spentCurrency.FirstOrDefault(x => x.UserId == user.Id).Value
-        };
+            };
+        }
+
+        /// <summary>
+        /// Получить рейтинг пользователей
+        /// </summary>
+        /// <returns></returns>
+        public List<UserRating> GetUserRatings()
+        {
+            var users = _userRepository.GetQueryable()
+                .ToList();
+
+            var userScores = _scoreRepository.GetQueryable()
+                .OrderByDescending(x => x.Score)
+                .ToList();
+
+            return users.Select(x => new UserRating()
+            {
+                Id = x.Id,
+                ImgUrl = x.ImageUrl,
+                Title = x.UserName,
+                Type = "user",
+                PlaceOnTop = userScores.FindIndex(p => p.UserId == x.Id) + 1,
+                Score = userScores.FirstOrDefault(p => p.UserId == x.Id).Score,
+                TotalScore = 50 
+            }).OrderBy(x => x.PlaceOnTop)
+            .ToList();
+        }
+
+        /// <summary>
+        /// Получить бейджи пользователя
+        /// </summary>
+        /// <returns></returns>
+        public List<Badge> GetUserBadges(int id)
+        {
+            var userBadges = _userBadgeRepository.GetQueryable()
+                .Where(x => x.UserId == id)
+                .Select(x => x.BadgeId)
+                .ToList();
+
+            return _badgeRepository.GetQueryable()
+                .Where(x => userBadges.Contains(x.Id))
+                .Select(p => new Badge() 
+                {
+                    Id = p.Id,
+                    Description = p.Description,
+                    Score = p.Score,
+                    ImgUrl = p.ImageUrl,
+                    Title = p.Name,
+                    SpentCurrency = p.SpentCurrency
+                }).ToList();
         }
     }
 }
