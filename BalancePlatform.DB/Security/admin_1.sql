@@ -1,3 +1,0 @@
-﻿CREATE LOGIN [admin]
-    WITH PASSWORD = N'Eo|rrj4odxV9jYizegjdzbt{msFT7_&#$!~<|owjpgjph}xy', SID = 0x2900F83E1D1C574194EE85993C28D953, DEFAULT_DATABASE = [BalancePlatform], DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
-
