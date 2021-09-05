@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.87e46404.chunk.css",
-    "main.js": "/static/js/main.68d59373.chunk.js",
-    "main.js.map": "/static/js/main.68d59373.chunk.js.map",
+    "main.js": "/static/js/main.f2039cbf.chunk.js",
+    "main.js.map": "/static/js/main.f2039cbf.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.19a65df7.js",
     "runtime-main.js.map": "/static/js/runtime-main.19a65df7.js.map",
     "static/css/2.786ae0dd.chunk.css": "/static/css/2.786ae0dd.chunk.css",
@@ -21,6 +21,7 @@
     "static/media/defeat.92ef9a36.svg": "/static/media/defeat.92ef9a36.svg",
     "static/media/draw.f307d4db.svg": "/static/media/draw.f307d4db.svg",
     "static/media/email.828d2ddd.svg": "/static/media/email.828d2ddd.svg",
+    "static/media/features.6e4e9672.png": "/static/media/features.6e4e9672.png",
     "static/media/goals.965ba7d7.png": "/static/media/goals.965ba7d7.png",
     "static/media/group.4d844cf2.png": "/static/media/group.4d844cf2.png",
     "static/media/groups.b58f6c9e.svg": "/static/media/groups.b58f6c9e.svg",
@@ -39,6 +40,6 @@
     "static/css/2.786ae0dd.chunk.css",
     "static/js/2.3ea27a1c.chunk.js",
     "static/css/main.87e46404.chunk.css",
-    "static/js/main.68d59373.chunk.js"
+    "static/js/main.f2039cbf.chunk.js"
   ]
 }
